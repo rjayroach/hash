@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<h1>{{ title }}</h1>
+
+<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)" [zoom]="15">
+  <agm-marker *ngFor="let marker of markers"
+    [label] = "labelOptions"
+    [latitude]="marker.lat"
+    [longitude]="marker.lng">
+    <agm-info-window>
+      <h3>Hello!</h3>
+      <p>You are here!</p>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+
+<h2>Marker Listing</h2>
+<ul id="marker-listing">
+  <li *ngFor="let marker of markers">
+    <div class="single-marker">
+      <span [ngStyle]="{background: marker.color}"> {{ marker.label }} </span>
+      <span> lat: {{ marker.lat | number }} long: {{ marker.lng | number }} </span>
+    </div>
+  </li>
+</ul>
+
+{{ lat | currency : 'GBP' }}
+
+<button type="button" (click)="trackMe()">Tracking On</button>
+<button type="button" (click)="addCheck('t')">T-check</button>
