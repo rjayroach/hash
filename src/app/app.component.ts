@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-// import { DataService } from './data.service';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-  // providers: [DataService]
+  styleUrls: ['./app.component.css'],
+  providers: [DataService]
 })
 export class AppComponent implements OnInit {
   title: string = 'maps'
@@ -13,35 +13,15 @@ export class AppComponent implements OnInit {
   lng: number = 103.83223
   lable: string = 'AB'
   locationChosen: boolean = false
-  markers: marker[] =
-  [
-    {
-      lat: 1.2936014,
-      lng: 103.832211,
-      label: 'start',
-      color: 'green'
-    },
-    {
-      lat: 1.2919227645330837,
-      lng: 103.81586025384524,
-      label: 't',
-      color: 'blue'
-    },
-    {
-      lat: 1.3090633620231047,
-      lng: 103.78866232058863,
-      label: 'end',
-      color: 'red'
-    }
-  ]
+  markers: marker[]
 
-  // constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getUserLocation()
-    // this.dataService.fetchData().subscribe(
-    //   (data) => this.markers = data
-    // )
+    this.dataService.fetchData().subscribe(
+      (data) => this.markers = data
+    )
   }
 
   labelOptions = {
